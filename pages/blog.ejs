@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/toolkit.css">
+    <script src="/js/toolkit.js"></script>
+    <script src="/js/colors.js"></script>
+    <script src="/js/jumper.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script>setPrimaryPalette(RED[500])</script>
+    <title>博客 - <%- site_conf.site.short -%></title>
+</head>
+<body>
+    <header>
+        <%- include("widgets/nav.ejs") %>
+    </header>
+    <main>
+        <article class="child-center">
+            <input onkeydown="_search(this)" placeholder="搜索"/>
+            <div id="blog_container">
+                <% all.blog.forEach(item=>{ %>
+                    <%- include("boxes/blog.ejs",{item}) %>
+                <% }) %>
+            </div>
+        </article>
+        <script>
+            let json={};
+            fetch("/json.d/blogs.json").then(data=>{
+                data.text().then(data=>{
+                    json=JSON.parse(data);
+                });
+            });
+            function _search(element){
+                let val=element.value;
+                let d_json = search(val,json);
+                let sid;
+                if (d_json==null) sid="nullsid";
+                else sid=d_json.sid;
+                let blogs_collection=document.getElementById("blog_container").children;
+                for(let item of blogs_collection){
+                    if(!item.innerHTML.includes(`<sid>${sid}</sid>`))
+                        item.style.display="none";
+                    else item.style.display="inline-block";
+                }
+            }
+        </script>
+    </main>
+</body>

@@ -1,0 +1,17 @@
+<box class="blog">
+    <ibox>
+        <ilabel><%= item.title %></ilabel>
+        <sid><%= item.sid %></sid>
+    </ibox>
+    <hr>
+    <small>作者：<%= item.author %></small>
+    <hr>
+    <comment><%= item.description %></comment>
+    <action onclick="go(this)" url="<%= item.time %>/<%= item.sid %><%= item.title %>/">
+        <i>B</i>
+        <ctwoline>
+            <pack>阅读</pack>
+            <pack><%= item.sid %><%= item.title %></pack>
+        </ctwoline>
+    </action>
+</box>

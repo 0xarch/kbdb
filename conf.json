@@ -1,0 +1,26 @@
+{
+    "publicroot":"public",
+    "pages":"pages",
+    "authors":"conf.d/authors.json",
+    "types":{
+        "blog":{
+            "conf":"conf.d/blogs.json",
+            "source":"public/src/blog/",
+            "type":"blog",
+            "template":"blog",
+            "enabled":true
+        },
+        "wiki":{
+            "conf":"conf.d/wikis.json",
+            "source":"public/src/wiki/",
+            "type":"wiki",
+            "template":"wiki",
+            "enabled":false
+        }
+    },
+    "site":{
+        "name":"0xDevel",
+        "short":"Web Studio",
+        "cdn_repo_rootdir":"https://cdn.jsdelivr.net/gh/0xarch/0xarch.github.io/"
+    }
+}

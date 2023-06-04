@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/toolkit.css">
+    <script src="/js/colors.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script>setPrimaryPalette(RED[600])</script>
+    <title><%= blog.title -%>|<%= author.name -%> - <%= site_conf.site.short -%></title>
+</head>
+<body>
+    <header>
+        <%- include("widgets/nav.ejs") %>
+    </header>
+    <main>
+        <hidden id="_blog-url"><%= blog.src -%></hidden>
+        <article id="_blog-article"></article>
+        <aside>
+            <blank></blank>
+            <container class="blog-info-div">
+                <img src="<%= author.avatar %>">
+                <p>作者： <%= author.name -%></p>
+            </container>
+        </aside>
+        <script>
+            let url=document.getElementById("_blog-url").textContent;
+            fetch(url).then(data=>data.text().then(data=>document.getElementById("_blog-article").innerHTML=marked.parse(data)))
+        </script>
+    </main>
+</body>

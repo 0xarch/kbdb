@@ -1,0 +1,11 @@
+<nav>
+    <div class="nav-l">
+        <a href="/"><%= site_conf.site.name %></a>
+    </div>
+    <div class="nav-r">
+        <a href="/pages/server/">服务器</a>
+        <% if(site_conf.types.wiki.enabled){ %> <a href="/pages/wiki/">维基</a> <% } %>
+        <% if(site_conf.types.blog.enabled){ %> <a href="/pages/blog/">博客</a> <% } %>
+        <a href="/pages/aboutus/">关于我们</a>
+    </div>
+</nav>

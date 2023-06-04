@@ -1,0 +1,26 @@
+{
+    "main.ejs":{
+        "type":"z-ejs",
+        "destination":"root/"
+    },
+    "server.ejs":{
+        "type":"z-ejs",
+        "destination":"root/pages/server/"
+    },
+    "blog.ejs":{
+        "type":"z-ejs",
+        "destination":"root/pages/blog/"
+    },
+    "aboutus.ejs":{
+        "type":"z-ejs",
+        "destination":"root/pages/aboutus/"
+    },
+    "blog_t.ejs":{
+        "type":"t-ejs",
+        "template":"blog"
+    },
+    "wiki_t.ejs":{
+        "type":"t-ejs",
+        "template":"wiki"
+    }
+}
