@@ -1,0 +1,20 @@
+<Header>
+    <Banner>
+
+    </Banner>
+    <Nav>
+        <Left>
+            <a href="/"><%- site_conf.site.name %></a>
+        </Left>
+        <Right>
+            <Action onclick="go('/pages/server/')">服务器</Action>
+<% if(site_conf.types.wiki.enabled){ -%>
+            <Action onclick="go('/pages/wiki/')">维基</Action>
+<%}-%>
+<% if(site_conf.types.blog.enabled){ -%>
+            <Action onclick="go('/pages/blog/')">博客</Action>
+<%}-%>
+            <Action onclick="go('/pages/aboutus/')">关于</Action>
+        </Right>
+    </Nav>
+</Header>

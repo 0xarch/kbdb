@@ -1,4 +1,35 @@
 {
+    "page":{
+        "pageroot":"pages",
+        "publicroot":"public",
+        "pages":{
+            "main.ejs":{
+                "type":"z-ejs",
+                "destination":"root/"
+            },
+            "server.ejs":{
+                "type":"z-ejs",
+                "destination":"root/pages/server/"
+            },
+            "blog.ejs":{
+                "type":"z-ejs",
+                "destination":"root/pages/blog/"
+            },
+            "aboutus.ejs":{
+                "type":"z-ejs",
+                "destination":"root/pages/aboutus/"
+            },
+            "blog_t.ejs":{
+                "type":"t-ejs",
+                "template":"blog"
+            },
+            "wiki_t.ejs":{
+                "type":"t-ejs",
+                "template":"wiki"
+            }
+        }
+    },
+    "toolkit":"mata-toolkit",
     "publicroot":"public",
     "pages":"pages",
     "authors":"conf.d/authors.json",
@@ -17,6 +48,11 @@
             "template":"wiki",
             "enabled":false
         }
+    },
+    "palette":{
+        "gencolor":["LIME"],
+        "primary":"LIME500",
+        "secondary":"LIME"
     },
     "site":{
         "name":"0xDevel",

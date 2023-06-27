@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/toolkit.css">
-    <script src="/js/colors.js"></script>
+    <%- include("widgets/head.ejs") %>
     <script src="https://cdn.bootcdn.net/ajax/libs/marked/4.3.0/marked.min.js"></script>
-    <script>setPrimaryPalette(RED[600])</script>
     <title><%= blog.title -%>|<%= author.name -%> - <%= site_conf.site.short -%></title>
+    <script>
+        const Palette=new MPaletteProcesser(MataPalette);
+        Palette.setPaletteFrom("primary","GREEN",500);
+        Palette.setPaletteFrom("primary","TEAL",500);
+    </script>
 </head>
 <body>
-    <header>
-        <%- include("widgets/nav.ejs") %>
-    </header>
-    <main>
-        <hidden id="_blog-url"><%= blog.src -%></hidden>
-        <article id="_blog-article"></article>
-        <aside>
-            <blank></blank>
-            <container class="blog-info-div">
+    <%- include("widgets/m-header.ejs") %>
+    <Hidden id="_blog-url"><%= blog.src -%></Hidden>
+    <ABox space=Margin flexOption=AlignStart>
+        <Article id="_blog-article"></Article>
+        <Aside>
+            <hr type=Blank>
+            <CBox>
                 <img src="<%= author.avatar %>">
                 <p>作者： <%= author.name -%></p>
-            </container>
-        </aside>
-        <script>
-            let url=document.getElementById("_blog-url").textContent;
-            fetch(url).then(data=>data.text().then(data=>document.getElementById("_blog-article").innerHTML=marked.parse(data)))
-        </script>
-    </main>
+                <Action onclick="go('<%= author.url%>')">主页</Action>
+                <p>项目：<%- author.projects.length==0?'暂无':
+                        eval(`let str='';author.projects.forEach(item=>{str+=\`<li><Action Outline space=NoPadding style="min-height:1.5rem" onclick="go('\${item.url}')">\${item.name}</Action></li>\`;});str`)
+                %></p>
+            </CBox>
+            <hr type=Blank>
+            <CBox>
+                <p>发布时间： <%= blog.time %></p>
+                <p>描述：<Tx><%= blog.description %></Tx></p>
+                <p>SID: <%= blog.sid %></p>
+            </CBox>
+        </Aside>
+    </ABox>
+    <script>
+        let url=document.getElementById("_blog-url").textContent;
+        fetch(url).then(data=>data.text().then(data=>document.getElementById("_blog-article").innerHTML=marked.parse(data)))
+    </script>
 </body>

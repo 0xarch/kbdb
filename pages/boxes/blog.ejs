@@ -1,17 +1,11 @@
-<box class="blog">
+<CBox>
     <ibox>
         <ilabel><%= item.title %></ilabel>
-        <sid><%= item.sid %></sid>
+        <small>SID <%= item.sid %></small>
     </ibox>
     <hr>
     <small>作者：<%= item.author %></small>
     <hr>
-    <comment><%= item.description %></comment>
-    <action onclick="go(this)" url="<%= item.time %>/<%= item.sid %><%= item.title %>/">
-        <i>B</i>
-        <ctwoline>
-            <pack>阅读</pack>
-            <pack><%= item.sid %><%= item.title %></pack>
-        </ctwoline>
-    </action>
-</box>
+    <Tx><%= item.description %></Tx>
+    <Action onclick="go('<%= item.time %>/<%= item.sid %><%= item.title %>/')">阅读</Action>
+</CBox>

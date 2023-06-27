@@ -3,9 +3,11 @@
         <a href="/"><%= site_conf.site.name %></a>
     </div>
     <div class="nav-r">
-        <a href="/pages/server/">服务器</a>
-        <% if(site_conf.types.wiki.enabled){ %> <a href="/pages/wiki/">维基</a> <% } %>
-        <% if(site_conf.types.blog.enabled){ %> <a href="/pages/blog/">博客</a> <% } %>
-        <a href="/pages/aboutus/">关于我们</a>
+        <shrink class="onportrait">
+            <%- Macro.riawt("/pages/server","fa-solid fa-server","服务器") -%>
+            <% if(site_conf.types.wiki.enabled){ %> <%- Macro.riawt("/pages/wiki/","fa-solid fa-books","维基") -%> <% } %>
+            <% if(site_conf.types.blog.enabled){ %> <%- Macro.riawt("/pages/blog","fa-solid fa-blog","博客") -%> <% } %>
+            <%- Macro.riawt("/pages/aboutus/","fa-solid fa-circle-info","关于") %>
+        </shrink>
     </div>
 </nav>

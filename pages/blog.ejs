@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/toolkit.css">
-    <script src="/js/toolkit.js"></script>
-    <script src="/js/colors.js"></script>
+    <%- include("widgets/head.ejs") %>
     <script src="/js/jumper.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/marked/4.3.0/marked.min.js"></script>
-    <script>setPrimaryPalette(RED[500])</script>
     <title>博客 - <%- site_conf.site.short -%></title>
+    <script>
+        const Palette=new MPaletteProcesser(MataPalette);
+        Palette.setPaletteFrom("primary","BLUE",500);
+        Palette.setPaletteFrom("primary","LIGHTBLUE",500);
+    </script>
 </head>
 <body>
-    <header>
-        <%- include("widgets/nav.ejs") %>
-    </header>
-    <main>
-        <article class="child-center">
-            <input onkeydown="_search(this)" placeholder="搜索"/>
-            <div id="blog_container">
-                <% all.blog.forEach(item=>{ %>
-                    <%- include("boxes/blog.ejs",{item}) %>
-                <% }) %>
-            </div>
-        </article>
+    <%- include("widgets/m-header.ejs") %>
+    <Main>
+        <Box>
+            <Line>
+                <input onkeydown="_search(this)" placeholder="搜索"/>
+            </Line>
+            <Line>
+                <Box space="Margin Padding">
+                    <% all.blog.forEach(item=>{ %>
+                        <%- include("boxes/blog.ejs",{item}) %>
+                    <% }) %>
+                </Box>
+            </Line>
+        </Box>
         <script>
             let json={};
             fetch("/json.d/blogs.json").then(data=>{
@@ -43,5 +46,5 @@
                 }
             }
         </script>
-    </main>
+    </Main>
 </body>

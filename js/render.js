@@ -2,6 +2,11 @@ let fs = require("fs");
 let fse = require("fs-extra");
 let ejs = require("ejs");
 
+let SVG = require("./svg.js").SVG;
+let Macro = require("./macro.js").Macro;
+
+let ejsUsing={SVG,Macro};
+
 let site_conf = JSON.parse(fs.readFileSync(process.argv[2]).toString());
 let json = JSON.parse(fs.readFileSync(site_conf.pages+"/conf.json").toString());
 let _path=site_conf.pages.split("/");
@@ -24,7 +29,7 @@ for (let item in json){
     }
 
     else if (json[item].type=="z-ejs"){
-        let content=ejs.render(text,{site_conf,filename:`${_path}/${item}`,all:site_things});
+        let content=ejs.render(text,{site_conf,filename:`${_path}/${item}`,all:site_things,...ejsUsing});
         let file_parent_path=json[item].destination.replace("root",site_conf.publicroot);
         fse.ensureDirSync(file_parent_path);
         fs.writeFile(`${file_parent_path}index.html`,content,()=>{});
@@ -45,7 +50,7 @@ for (let item in site_things){
         let author = authors[element.author];
         let blog = element;
         let write_dir=`public/pages/blog/${element.time}/${element.sid}${element.title}/`;
-        let content = ejs.render(template.t,{site_conf,filename:template.p,all:site_things,author,blog});
+        let content = ejs.render(template.t,{site_conf,filename:template.p,all:site_things,author,blog,...ejsUsing});
         fse.ensureDirSync(write_dir);
         fs.writeFile(`${write_dir}index.html`,content,(err)=>{if(err)throw err});
     }
